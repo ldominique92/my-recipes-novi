@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 
 function App() {
@@ -18,6 +18,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <footer>
+      <a href="https://www.flaticon.com/free-icons/cook" title="cook icons">Cook icons created by Freepik - Flaticon</a>
+      </footer>
     </div>
   );
 }
