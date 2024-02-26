@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
     return (
       <Container>
         <header>
-          <Navbar expand="lg" className="bg-body-tertiary nav-bar">
+          <Navbar expand="lg" className="nav-bar">
             <Link to="/" className='home-link'>
               <img src={logo} className="App-logo" alt="logo" />
               <h1>My Recipe Book</h1>

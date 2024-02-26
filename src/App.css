@@ -14,6 +14,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #f0828f;
+}
+
 .nav-bar {
   display: flex;
   align-items: top;
@@ -30,22 +34,27 @@ a {
   display: flex;
   align-items: center;
   justify-content: left;
-  width: 25vw;
+  width: 35vw;
 }
 
 .home-link h1 {
   margin-left: 20px;
-  font-size: 5w;
+}
+
+@media (min-width: 1200px) {
+  .h1, h1 {
+    font-size: 1.5rem;
+  }
 }
 
 .site-menu {
-  width: 75vw;
+  width: 65vw;
+  justify-content: flex-end;
 }
 
 .site-menu ul {
   display: flex;
   flex-direction: row;
-  justify-content: right;
   align-items: top;
 }
 

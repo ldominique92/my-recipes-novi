@@ -1,7 +1,8 @@
 import React  from 'react';
-import './App.css';
 import {RouterProvider} from "react-router-dom";
 import {router} from './Menu.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 export default function App() {
   return (
