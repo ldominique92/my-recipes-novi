@@ -75,8 +75,9 @@ a:hover {
 
 footer {
   height: 5vh;
-  margin-top: 5px;
+  margin-top: 15px;
   align-items: baseline;
+  font-size: x-small;
 }
 
 .recipe {
@@ -85,7 +86,7 @@ footer {
 }
 
 .recipe img {
-  width: 50%;
+  width: 40%;
 }
 
 .recipe-text h2 {
@@ -100,4 +101,11 @@ footer {
   font-size: medium;
   color: #545c65;
   padding: 10px;
+}
+
+.ingredients-list {
+  text-align: left;
+  font-size: medium;
+  color: #545c65;
+  padding-top: 10px;
 }

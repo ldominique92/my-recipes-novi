@@ -13,7 +13,6 @@ import {
     useRouteLoaderData,
   } from "react-router-dom";
 import { noviAuthProvider } from "./auth";
-import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Home from './Home.js';

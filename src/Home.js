@@ -13,17 +13,8 @@ export default function Home() {
             isFirst = false;
             return
         }
-
-        axios({
-            method: 'get',
-            url: 'https://www.themealdb.com/api/json/v1/1/random.php'
-          })
-        .then((response) =>
-        {
-            console.log(response.data);
-            
-            setRecipeOfTheDay(response.data.meals[0]);
-        });
+        getRandomRecipe(setRecipeOfTheDay)
+        
     }, []);
 
     if (recipeOfTheDay) {
@@ -31,9 +22,14 @@ export default function Home() {
             <img src={ recipeOfTheDay.strMealThumb }/>
             <div className='recipe-text'> 
                 <h2>Recipe of the day: { recipeOfTheDay.strMeal }</h2>
-                <Text style={{ textAlign: "left" }}>
-                    { recipeOfTheDay.strInstructions}
-                </Text>
+                <ul className='ingredients-list'>
+                    {
+                        recipeOfTheDay.ingredients.map((ingredient, i) => {      
+                            return (<li key={i}>{ingredient}</li>)
+                        })
+                    }
+                </ul>
+                <Text>{ recipeOfTheDay.strInstructions}</Text>
             </div>
         </div>;
     } else {
@@ -42,4 +38,26 @@ export default function Home() {
        <img src={ loading }/>
     </Container>;
     }
+}
+
+function getRandomRecipe(setFunction) {
+    axios({
+        method: 'get',
+        url: 'https://www.themealdb.com/api/json/v1/1/random.php'
+      })
+    .then((response) =>
+    {
+        let ingredients = [];
+        
+        for (let i = 1; i <= 20; i++) {
+            if (response.data.meals[0]["strIngredient" + i]) {
+                ingredients.push(response.data.meals[0]["strMeasure" + i] + " " +response.data.meals[0]["strIngredient" + i] )
+            }
+        }
+        
+        // console.log(ingredients);
+        response.data.meals[0].ingredients = ingredients;
+        
+        setFunction(response.data.meals[0]);
+    });
 }
