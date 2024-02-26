@@ -16,6 +16,7 @@ import { noviAuthProvider } from "./auth";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import Home from './Home.js';
 
 export const router = createBrowserRouter([
     {
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
       children: [
         {
           index: true,
-          Component: PublicPage,
+          Component: Home,
         },
         {
           path: "login",
@@ -58,14 +59,14 @@ export const router = createBrowserRouter([
       <Container>
         <header>
           <Navbar expand="lg" className="bg-body-tertiary nav-bar">
-            <Navbar.Brand href="#home" className='home-link'>
+            <Link to="/" className='home-link'>
               <img src={logo} className="App-logo" alt="logo" />
               <h1>My Recipe Book</h1>
-            </Navbar.Brand>
+            </Link>
             <Nav className="site-menu">
               <ul>
                 <li>
-                  <Link to="/">Public Page</Link>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
                   <Link to="/protected">Protected Page</Link>
@@ -77,7 +78,9 @@ export const router = createBrowserRouter([
             </Nav>
           </Navbar> 
           </header>
-          <Outlet />
+          <Container className='site-body'>
+            <Outlet />
+          </Container>
           <footer>
           <a href="https://www.flaticon.com/free-icons/cook" title="cook icons">Cook icons created by Freepik - Flaticon</a>
         </footer>
@@ -171,10 +174,6 @@ function LoginPage() {
       </Form>
     </div>
   );
-}
-
-function PublicPage() {
-  return <h3>Public</h3>;
 }
 
 function protectedLoader({ request }: LoaderFunctionArgs) {

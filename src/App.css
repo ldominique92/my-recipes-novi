@@ -5,7 +5,7 @@
 }
 
 .App-logo {
-  height: 15vmin;
+  height: 5vw;
   pointer-events: none;
 }
 
@@ -30,15 +30,16 @@ a {
   display: flex;
   align-items: center;
   justify-content: left;
-  width: 25%;
+  width: 25vw;
 }
 
 .home-link h1 {
   margin-left: 20px;
+  font-size: 5w;
 }
 
 .site-menu {
-  width: 75%;
+  width: 75vw;
 }
 
 .site-menu ul {
@@ -51,4 +52,12 @@ a {
 .site-menu ul li {
   display: inline-block;
   padding-right: 10px;
+}
+
+.site-body {
+  min-height: 70vh;
+}
+
+footer {
+  height: 10vh;
 }
