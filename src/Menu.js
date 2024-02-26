@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
 
   function Layout() {
     return (
-      <Container>
+      <div>
         <header>
           <Navbar expand="lg" className="nav-bar">
             <Link to="/" className='home-link'>
@@ -84,7 +84,7 @@ export const router = createBrowserRouter([
           <footer>
           <a href="https://www.flaticon.com/free-icons/cook" title="cook icons">Cook icons created by Freepik - Flaticon</a>
         </footer>
-      </Container>
+      </div>
     );
   }
 
