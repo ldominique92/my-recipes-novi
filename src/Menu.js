@@ -78,9 +78,9 @@ export const router = createBrowserRouter([
             </Nav>
           </Navbar> 
           </header>
-          <Container className='site-body'>
+          <div className='site-body'>
             <Outlet />
-          </Container>
+          </div>
           <footer>
           <a href="https://www.flaticon.com/free-icons/cook" title="cook icons">Cook icons created by Freepik - Flaticon</a>
         </footer>

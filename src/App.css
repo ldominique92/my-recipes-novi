@@ -25,7 +25,7 @@ a:hover {
   display: flex;
   align-items: top;
   justify-content: left;
-  min-height: 20vh;
+  min-height: 12vh;
   flex-direction: row;
   align-items: top;
   justify-content: left;
@@ -48,7 +48,7 @@ a:hover {
 
 @media (min-width: 1200px) {
   .h1, h1 {
-    font-size: 2rem;
+    font-size: xx-large;
   }
 }
 
@@ -66,6 +66,7 @@ a:hover {
 .site-menu ul li {
   display: inline-block;
   padding-right: 10px;
+  font-size: medium;
 }
 
 .site-body {
@@ -73,9 +74,30 @@ a:hover {
 }
 
 footer {
-  height: 10vh;
+  height: 5vh;
+  margin-top: 5px;
+  align-items: baseline;
 }
 
-h1 {
+.recipe {
+  display: flex;
+  flex-direction: row;
+}
 
+.recipe img {
+  width: 50%;
+}
+
+.recipe-text h2 {
+  color: #5EA8A1;
+  font-size: xx-large;
+  margin: 10px 20px;
+  text-align: left;
+}
+
+.recipe-text div {
+  display: flex;
+  font-size: medium;
+  color: #545c65;
+  padding: 10px;
 }
