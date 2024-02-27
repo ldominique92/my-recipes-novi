@@ -135,6 +135,7 @@ footer {
   padding: 10px;
   justify-content: flex-end;
   text-align: right;
+  min-width: 300px;
   width: fit-content;
 }
 
@@ -156,4 +157,5 @@ footer {
 
 .form-error-message {
   color: #99535c;
+  margin-top: 5px;
 }

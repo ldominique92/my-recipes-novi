@@ -102,11 +102,16 @@ function Layout() {
 async function loginAction({ request }) {
   let formData = await request.formData();
   let username = formData.get("username");
+  let password = formData.get("password");
 
-  // Validate our form inputs and return validation errors via useActionData()
   if (!username) {
     return {
       error: "You must provide a username to log in",
+    };
+  }
+  if (!password) {
+    return {
+      error: "You must provide a password to log in",
     };
   }
 
