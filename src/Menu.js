@@ -18,98 +18,82 @@ import Nav from 'react-bootstrap/Nav';
 import Home from './Home.js';
 
 export const router = createBrowserRouter([
-    {
-      id: "root",
-      path: "/",
-      loader() {
-        return { user: noviAuthProvider.username };
-      },
-      Component: Layout,
-      children: [
-        {
-          index: true,
-          Component: Home,
-        },
-        {
-          path: "login",
-          action: loginAction,
-          loader: loginLoader,
-          Component: LoginPage,
-        },
-        {
-          path: "preferences",
-          loader: protectedLoader,
-          Component: PreferencesPage,
-        },
-      ],
+  {
+    id: "root",
+    path: "/",
+    loader() {
+      return { user: noviAuthProvider.username };
     },
-    {
-      path: "/logout",
-      async action() {
-        // We signout in a "resource route" that we can hit from a fetcher.Form
-        await noviAuthProvider.signout();
-        return redirect("/");
+    Component: Layout,
+    children: [
+      {
+        index: true,
+        Component: Home,
       },
+      {
+        path: "login",
+        action: loginAction,
+        loader: loginLoader,
+        Component: LoginPage,
+      },
+      {
+        path: "preferences",
+        loader: protectedLoader,
+        Component: PreferencesPage,
+      },
+    ],
+  },
+  {
+    path: "/logout",
+    async action() {
+      // We signout in a "resource route" that we can hit from a fetcher.Form
+      await noviAuthProvider.signout();
+      return redirect("/");
     },
-  ]);
+  },
+]);
 
-  function Layout() {
-    return (
-      <div>
-        <header>
-          <Navbar expand="lg" className="nav-bar">
-            <Link to="/" className='home-link'>
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1>My Recipe Book</h1>
-            </Link>
-            <Nav className="site-menu">
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li hidden={!noviAuthProvider.isAuthenticated}>
-                  <Link to="/preferences">Preferences</Link>
-                </li>
-                <li hidden={!noviAuthProvider.isAuthenticated}>
-                  <Link to="/logout">Log out</Link>
-                </li>
-                <li hidden={noviAuthProvider.isAuthenticated}>
-                  <Link to="/login">Login</Link>
-                </li>
-              </ul>
-            </Nav>
-          </Navbar> 
-          </header>
-          <div className='site-body'>
-            <Outlet />
-          </div>
-          <footer>
-          <a href="https://www.flaticon.com/free-icons/cook" title="cook icons">Cook icons created by Freepik - Flaticon</a>
-        </footer>
-      </div>
-    );
-  }
-
-
-function AuthStatus() {
-  // Get our logged in user, if they exist, from the root route loader data
+function Layout() {
   let { user } = useRouteLoaderData("root");
   let fetcher = useFetcher();
-
-  if (!user) {
-    return <p>You are not logged in.</p>;
-  }
-
   let isLoggingOut = fetcher.formData != null;
 
   return (
     <div>
-      <p>Welcome {user}!</p>
-      <fetcher.Form method="post" action="/logout">
-        <button type="submit" disabled={isLoggingOut}>
-          {isLoggingOut ? "Signing out..." : "Sign out"}
-        </button>
-      </fetcher.Form>
+      <header>
+        <Navbar expand="lg" className="nav-bar">
+          <Link to="/" className='home-link'>
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1>My Recipe Book</h1>
+          </Link>
+          <Nav className="site-menu">
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li hidden={!noviAuthProvider.isAuthenticated}>
+                <Link to="/preferences">Preferences</Link>
+              </li>
+              <li hidden={!noviAuthProvider.isAuthenticated}>
+                <fetcher.Form method="post" action="/logout">
+                  <button type="submit" disabled={isLoggingOut}>
+                    {isLoggingOut ? "Signing out..." : "Sign out"}
+                  </button>
+                </fetcher.Form>
+              </li>
+              <li hidden={noviAuthProvider.isAuthenticated}>
+                <Link to="/login">Login</Link>
+              </li>
+            </ul>
+          </Nav>
+        </Navbar> 
+        </header>
+        <div className='site-body'>
+          <Outlet />
+        </div>
+        <footer>
+        <a href="https://www.flaticon.com/free-icons/cook" title="cook icons">Cook icons created by Freepik - Flaticon</a>
+      </footer>
     </div>
   );
 }
