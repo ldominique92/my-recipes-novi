@@ -16,6 +16,7 @@ import { noviAuthProvider } from "./auth";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Home from './Home.js';
+import { Container } from 'react-bootstrap';
 
 export const router = createBrowserRouter([
   {
@@ -143,20 +144,24 @@ function LoginPage() {
   let actionData = useActionData();
 
   return (
-    <div>
-      <Form method="post" replace>
-        <input type="hidden" name="redirectTo" value={from} />
-        <label>
-          Username: <input name="username" />
-        </label>{" "}
-        <button type="submit" disabled={isLoggingIn}>
-          {isLoggingIn ? "Logging in..." : "Login"}
-        </button>
-        {actionData && actionData.error ? (
-          <p style={{ color: "red" }}>{actionData.error}</p>
-        ) : null}
-      </Form>
-    </div>
+    <Form method="post" replace>
+      <Container className='form'>
+        <Container className='form-header'>
+          <h3>Login</h3>
+        </Container>
+        <Container className='form-body'>
+          <input type="hidden" name="redirectTo" value={from} />
+          <input name="username" placeholder='username' className='form-field' />
+          <input name="password" type='password' placeholder='password' className='form-field' />
+          <button type="submit" disabled={isLoggingIn} className='form-button'>
+            {isLoggingIn ? "Logging in..." : "Login"}
+          </button>
+          {actionData && actionData.error ? (
+            <p className="form-error-message">{actionData.error}</p>
+          ) : null}
+        </Container>
+      </Container>
+    </Form>
   );
 }
 

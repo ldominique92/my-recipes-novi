@@ -109,3 +109,51 @@ footer {
   color: #545c65;
   padding-top: 10px;
 }
+
+.form {
+  margin: 20px;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.form-header {
+  background: #f0828f;
+  color: white;
+}
+
+.form-header h3 {
+  text-align: left;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: flex-end;
+  text-align: right;
+  width: fit-content;
+}
+
+.form-button {
+  background: #f0828f;
+  color: white;
+  border-radius: 5px;
+  border: 0;
+  width: fit-content;
+}
+
+.form-field {
+  border-radius: 5px;
+  border: 1px solid #545C65;
+  padding: 3px;
+  margin-bottom: 5px;
+  width: min-content;
+}
+
+.form-error-message {
+  color: #99535c;
+}
