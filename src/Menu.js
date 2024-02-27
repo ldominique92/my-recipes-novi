@@ -37,9 +37,9 @@ export const router = createBrowserRouter([
           Component: LoginPage,
         },
         {
-          path: "protected",
+          path: "preferences",
           loader: protectedLoader,
-          Component: ProtectedPage,
+          Component: PreferencesPage,
         },
       ],
     },
@@ -67,11 +67,14 @@ export const router = createBrowserRouter([
                 <li>
                   <Link to="/">Home</Link>
                 </li>
-                <li>
-                  <Link to="/protected">Protected Page</Link>
+                <li hidden={!noviAuthProvider.isAuthenticated}>
+                  <Link to="/preferences">Preferences</Link>
                 </li>
-                <li>
-                <AuthStatus />
+                <li hidden={!noviAuthProvider.isAuthenticated}>
+                  <Link to="/logout">Log out</Link>
+                </li>
+                <li hidden={noviAuthProvider.isAuthenticated}>
+                  <Link to="/login">Login</Link>
                 </li>
               </ul>
             </Nav>
@@ -111,7 +114,7 @@ function AuthStatus() {
   );
 }
 
-async function loginAction({ request }: LoaderFunctionArgs) {
+async function loginAction({ request }) {
   let formData = await request.formData();
   let username = formData.get("username");
 
@@ -157,8 +160,6 @@ function LoginPage() {
 
   return (
     <div>
-      <p>You must log in to view the page at {from}</p>
-
       <Form method="post" replace>
         <input type="hidden" name="redirectTo" value={from} />
         <label>
@@ -175,10 +176,7 @@ function LoginPage() {
   );
 }
 
-function protectedLoader({ request }: LoaderFunctionArgs) {
-  // If the user is not logged in and tries to access `/protected`, we redirect
-  // them to `/login` with a `from` parameter that allows login to redirect back
-  // to this page upon successful authentication
+function protectedLoader({ request }) {
   if (!noviAuthProvider.isAuthenticated) {
     let params = new URLSearchParams();
     params.set("from", new URL(request.url).pathname);
@@ -187,6 +185,6 @@ function protectedLoader({ request }: LoaderFunctionArgs) {
   return null;
 }
 
-function ProtectedPage() {
-  return <h3>Protected</h3>;
+function PreferencesPage() {
+  return <h3>Preferences</h3>;
 }
