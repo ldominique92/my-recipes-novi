@@ -84,7 +84,7 @@ export function SigninPage() {
             <input name="password" type='password' placeholder='password' className='form-field' />
             <input name="repeat-password" type='password' placeholder='repeat password' className='form-field' />
             <button type="submit" disabled={isSigninIn} className='form-button'>
-                {isSigninIn ? "Sign in..." : "Signin"}
+                {isSigninIn ? "Saving..." : "Create account"}
             </button>
             {actionData && actionData.error ? (
                 <p className="form-error-message">{actionData.error}</p>
