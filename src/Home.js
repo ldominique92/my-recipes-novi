@@ -6,20 +6,20 @@ import loading from './loading.gif';
 
 export default function Home() {
     const [recipeOfTheDay, setRecipeOfTheDay] = useState(undefined);
-    let isFirst = true
+    const [isFirst, setisFirst] = useState(true);
 
     useLayoutEffect(() => {
         if(isFirst){
-            isFirst = false;
+            setisFirst(false);
             return
         }
         getRandomRecipe(setRecipeOfTheDay)
         
-    }, []);
+    }, [isFirst]);
 
     if (recipeOfTheDay) {
         return <div className='recipe'>
-            <img src={ recipeOfTheDay.strMealThumb }/>
+            <img alt={"picture of" + recipeOfTheDay.strMeal} src={ recipeOfTheDay.strMealThumb }/>
             <div className='recipe-text'> 
                 <h2>Recipe of the day: { recipeOfTheDay.strMeal }</h2>
                 <ul className='ingredients-list'>
@@ -35,7 +35,7 @@ export default function Home() {
     } else {
 
     return <Container>
-       <img src={ loading }/>
+       <img alt="loading" src={ loading }/>
     </Container>;
     }
 }

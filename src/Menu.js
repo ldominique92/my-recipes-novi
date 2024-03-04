@@ -5,8 +5,7 @@ import {
     Outlet,
     createBrowserRouter,
     redirect,
-    useFetcher,
-    useRouteLoaderData,
+    useFetcher
 } from "react-router-dom";
 import { noviAuthProvider } from "./auth";
 import Navbar from 'react-bootstrap/Navbar';
@@ -58,7 +57,6 @@ export const router = createBrowserRouter([
 ]);
 
 function Layout() {
-  let { user } = useRouteLoaderData("root");
   let fetcher = useFetcher();
   let isLoggingOut = fetcher.formData != null;
 

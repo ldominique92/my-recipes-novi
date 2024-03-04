@@ -36,7 +36,7 @@ export async function signinAction({ request }) {
         error: "You must provide a email to sign in",
         };
     }
-    if (password != repeatPassword) {
+    if (password !== repeatPassword) {
         return {
             error: "Passwords must match",
             };

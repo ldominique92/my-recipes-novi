@@ -24,7 +24,7 @@ export const noviAuthProvider = {
     })
     .then((response) =>
     {
-      if (response.status == 200 && response.data && response.data.jwt) {
+      if (response.status === 200 && response.data && response.data.jwt) {
         noviAuthProvider.token = response.data.jwt;
         noviAuthProvider.isAuthenticated = true;
         noviAuthProvider.username = username;
