@@ -1,18 +1,25 @@
 import axios from 'axios';
 
-const appUrl = 'https://api.datavortex.nl/testapp';
+const appUrl = 'https://api.datavortex.nl/myrecipebook/users';
 
 export const noviAuthProvider = {
   isAuthenticated: false,
   username: null,
   token: null,
-  async signin(username, password) {
+  async signin(username, password, email) {
     await axios({
       method: 'post',
-      url: appUrl + '/users/authenticate',
+      url: appUrl + '/users',
       data: {
         username: username,
-        password: password
+        password: password,
+        email: email,
+        info: null,
+        authorities: [
+          {
+            authority: "USER"
+          }
+        ]
       }
     })
     .then((response) =>

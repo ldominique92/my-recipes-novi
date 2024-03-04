@@ -13,6 +13,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Home from './Home.js';
 import { LoginPage, loginAction, loginLoader } from './Login.js';
+import { SigninPage, signinAction, signinLoader } from './Signin.js';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "signin",
+        action: signinAction,
+        loader: signinLoader,
+        Component: SigninPage,
       },
       {
         path: "login",
@@ -80,6 +87,9 @@ function Layout() {
               </li>
               <li hidden={noviAuthProvider.isAuthenticated}>
                 <Link to="/login">Login</Link>
+              </li>
+              <li hidden={noviAuthProvider.isAuthenticated}>
+                <Link to="/signin">Create an account</Link>
               </li>
             </ul>
           </Nav>
